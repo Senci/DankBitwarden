@@ -217,7 +217,7 @@ QtObject {
         _prevPass = item._passId;
         Quickshell.execDetached([
             "sh", "-c",
-            "rbw get --field '" + field + "' '" + item._passId + "' | dms cl copy && sleep 0.3 && " +
+            "rbw get --field '" + field + "' '" + item._passId + "' | tr -d '\\n' | dms cl copy && sleep 0.3 && " +
             'dms cl delete $(dms cl history --json | awk \'/"id":/{print $2+0; exit}\')'
         ]);
         ToastService.showInfo("DankBitwarden", "Copied " + field + " of " + item._passName + " to clipboard");
